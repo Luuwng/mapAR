@@ -22,6 +22,7 @@
 - Swiper dans les parties de la carte `slides2.html` : brain map
 
 Ajout d'une scrollbar : 
+
 .swiper-scrollbar {
             background: rgba(255, 255, 255, 0.1);
             height: 8px !important;
