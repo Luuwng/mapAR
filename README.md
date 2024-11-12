@@ -21,9 +21,9 @@
 - Swiper dans les parties de la carte `slides1.html` : solar system map
 - Swiper dans les parties de la carte `slides2.html` : brain map
 
-Ajout d'une scrollbar : 
+### Ajout d'une scrollbar : 
 
-.swiper-scrollbar {
+        '.swiper-scrollbar {
             background: rgba(255, 255, 255, 0.1);
             height: 8px !important;
             border-radius: 4px;
@@ -37,5 +37,6 @@ Ajout d'une scrollbar :
 
         .swiper-scrollbar-drag:hover {
             background: rgba(255, 255, 255, 0.8);
-        }
+        }'
 
+## AR basic
