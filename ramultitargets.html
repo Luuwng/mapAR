@@ -13,7 +13,7 @@
     <a-scene mindar-image="imageTargetSrc: images/AR/targets-3.mind; maxTrack: 2" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
           <a-asset-item id="BunnyModel" src="images/AR/bunny_gltf.glb"></a-asset-item>
-          <a-asset-item id="starModel" src="images/AR/star.gltf"></a-asset-item>
+          <a-asset-item id="starModel" src="images/AR/Creeper.glb"></a-asset-item>
         </a-assets>
   
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -22,7 +22,7 @@
           <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#BunnyModel" animation-mixer>
         </a-entity>
         <a-entity mindar-image-target="targetIndex: 1">
-          <a-gltf-model rotation="90 180 0 " position="0 -0.25 0" scale="0.5 0.5 0.5" src="#starModel" animation-mixer>
+          <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.5 0.5 0.5" src="#starModel" animation-mixer>
         </a-entity>
       </a-scene>
 </body>
