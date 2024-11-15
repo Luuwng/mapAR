@@ -23,7 +23,7 @@
 
 ### Ajout d'une scrollbar : 
 
-        '.swiper-scrollbar {
+        .swiper-scrollbar {
             background: rgba(255, 255, 255, 0.1);
             height: 8px !important;
             border-radius: 4px;
