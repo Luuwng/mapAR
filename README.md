@@ -48,6 +48,7 @@ Test AR avec la librairie [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 
 ### SOFT MIND : 
 
+-test avec la carte Softmind sur `rabasic.html`
 ![image cible](images/softmind.png)
 *image cible qui affiche soft mind*
 ![demos](images/softmind.gif)
@@ -55,7 +56,7 @@ Test AR avec la librairie [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 
 ### Démo personnalisée avec une seule cible
 
-
+-Avec la carte sur `raperso.html`
 ![image cible](images/cartear.jpg)
 *image cible qui affiche étoile mario*
 ![demos](images/starmario.gif)
@@ -63,15 +64,17 @@ Test AR avec la librairie [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 
 ### Démo personnalisée avec plusieurs cibles
 
+-Avec la carte sur `ramultitargets.html`
+
 ![image01](images/map.jpg)
 *image cible01 qui affiche l'objet 3D lapins*
 
-![demos](images/lapins2.gif)
+<img src="images/lapins2.gif" alt="demos" width="600"/>
 *Démo image 1 map*
 
 ![image02](images/pyramideimg.jpeg)
 *image cible02 qui affiche l'objet 3D creeper*
 
-![demos](images/creeper.gif)
+<img src="images/creeper.gif" alt="demos" width="600"/>
 *Démo image 2 désert*
 
