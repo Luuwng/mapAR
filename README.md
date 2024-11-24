@@ -39,4 +39,39 @@
             background: rgba(255, 255, 255, 0.8);
         }'
 
-## AR basic
+---
+
+## Utilisation de la réalité augmentée
+
+##### L'animation avec Mind AR
+Test AR avec la librairie [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
+
+### SOFT MIND : 
+
+![image cible](images/softmind.png)
+*image cible qui affiche soft mind*
+![demos](images/softmind.gif)
+
+
+### Démo personnalisée avec une seule cible
+
+
+![image cible](images/cartear.jpg)
+*image cible qui affiche étoile mario*
+![demos](images/starmario.gif)
+
+
+### Démo personnalisée avec plusieurs cibles
+
+![image01](images/map.jpg)
+*image cible01 qui affiche l'objet 3D lapins*
+
+![demos](images/lapins2.gif)
+*Démo image 1 map*
+
+![image02](images/pyramideimg.jpeg)
+*image cible02 qui affiche l'objet 3D creeper*
+
+![demos](images/creeper.gif)
+*Démo image 2 désert*
+
