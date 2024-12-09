@@ -1,29 +1,136 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA émotions</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-</head>
-<body>
-    <a-scene mindar-image="imageTargetSrc: images/AR/targets-3.mind; maxTrack: 2" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-        <a-assets>
-          <a-asset-item id="BunnyModel" src="images/AR/bunny_gltf.glb"></a-asset-item>
-          <a-asset-item id="starModel" src="images/AR/Creeper.glb"></a-asset-item>
-        </a-assets>
-  
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-  
-        <a-entity mindar-image-target="targetIndex: 0">
-          <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#BunnyModel" animation-mixer>
-        </a-entity>
-        <a-entity mindar-image-target="targetIndex: 1">
-          <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.5 0.5 0.5" src="#starModel" animation-mixer>
-        </a-entity>
-      </a-scene>
-</body>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cibles RA plantes</title>
+        <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Ajout d'un overlay pour le premier clic -->
+        <div id="startButton"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px; cursor: pointer; font-family: Arial, Helvetica, sans-serif;">
+            Appuyez pour écouter le son
+        </div>
+
+        <a-scene mindar-image="imageTargetSrc: images/AR/targets-3.mind; filterMinCF:0.0001; filterBeta: 0.1;"
+            color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+            device-orientation-permission-ui="enabled: false">
+
+            <a-assets>
+                <!-- les fichiers son -->
+                <audio id="sound-1" src="sons/happy.mp3" preload="auto" playsinline></audio>
+                <audio id="sound-2" src="sons/sad.mp3" preload="auto" playsinline></audio>
+                <audio id="sound-3" src="sons/angry.mp3" preload="auto" playsinline></audio>
+
+            </a-assets>
+
+            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+
+            <a-entity id="target-0" mindar-image-target="targetIndex: 0">
+                <a-entity id="target-1" mindar-image-target="targetIndex: 1"></a-entity>
+                <a-entity id="target-2" mindar-image-target="targetIndex: 2"></a-entity>
+
+        </a-scene>
+
+
+        <script>
+            let audioContext;
+            let soundsInitialized = false;
+
+            // Fonction pour initialiser l'audio
+            function initializeAudio() {
+                if (!soundsInitialized) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    // Charger et initialiser silencieusement tous les sons
+                    document.querySelectorAll('audio').forEach(audio => {
+                        audio.load();
+                        // Jouer et mettre immédiatement en pause pour initialiser
+                        audio.volume = 0;
+                        audio.play().then(() => {
+                            audio.pause();
+                            audio.currentTime = 0;
+                            audio.volume = 1;
+                        }).catch(console.error);
+                    });
+                    soundsInitialized = true;
+                }
+            }
+
+            // Gestionnaire du bouton de démarrage
+            document.getElementById('startButton').addEventListener('click', function () {
+                initializeAudio();
+                this.style.display = 'none';
+            });
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const targets = [
+                    {
+                        element: document.querySelector("#target-0"),
+                        sound: document.querySelector("#sound-1"),
+                        isPlaying: false
+                    },
+                    {
+                        element: document.querySelector("#target-1"),
+                        sound: document.querySelector("#sound-2"),
+                        isPlaying: false
+                    },
+                    {
+                        element: document.querySelector("#target-2"),
+                        sound: document.querySelector("#sound-3"),
+                        isPlaying: false
+                    }
+                ];
+
+                targets.forEach((target, index) => {
+                    if (target.element && target.sound) {
+                        target.element.addEventListener("targetFound", () => {
+                            console.log(`Cible ${index + 1} détectée !`);
+                            if (!target.isPlaying && soundsInitialized) {
+                                // Arrêter tous les autres sons
+                                targets.forEach(otherTarget => {
+                                    if (otherTarget !== target) {
+                                        otherTarget.sound.pause();
+                                        otherTarget.sound.currentTime = 0;
+                                        otherTarget.isPlaying = false;
+                                    }
+                                });
+
+                                // Jouer le son avec gestion des erreurs
+                                target.sound.play()
+                                    .then(() => {
+                                        target.isPlaying = true;
+                                    })
+                                    .catch(error => {
+                                        console.log(`Erreur lors de la lecture du son ${index + 1}:`, error);
+                                        // Tentative de réinitialisation de l'audio en cas d'erreur
+                                        target.sound.load();
+                                    });
+                            }
+                        });
+
+                        // Reste des événements inchangé
+                        target.element.addEventListener("targetLost", () => {
+                            console.log(`Cible ${index + 1} perdue !`);
+                            target.sound.pause();
+                            target.sound.currentTime = 0;
+                            target.isPlaying = false;
+                        });
+
+                        target.sound.addEventListener("ended", () => {
+                            target.isPlaying = false;
+                        });
+                    }
+                });
+            });
+        </script>
+
+    </body>
+
 </html>
