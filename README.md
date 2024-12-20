@@ -78,3 +78,21 @@ Test AR avec la librairie [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 <img src="images/creeper.gif" alt="demos" width="600"/>
 *Démo image 2 désert*
 
+## Prototype final
+
+Le prototype final se compose de 3 pages : une home (la carte), les détails des cibles (nav swiper) et une page info (utilisation).
+
+![image01](proto-final/images2/emotionapp.gif)
+
+Scénario : l'utilisateur·rice se trouve une map du cerveau sur les émotions. Il faut trouver 3 émotions dans ce cerveau. Une fois trouvée, une cible se trouve à côté (une petite pancarte) qu'il faut scanner avec le smartphone. Une fois scannée, la cible joue un son lié à l'émotion de son choix.
+
+![image01](proto-final/images2/screenhappy.png)
+*image cible1*
+
+![image02](proto-final/images2/screensad.png)
+*image cible2*
+
+![image03](proto-final/images2/screenangry.png)
+*image cible3*
+
+PS : Je n'ai pas réussi malgré plusieurs tentative avec l'IA à corriger le scan.
